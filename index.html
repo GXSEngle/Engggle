@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechBlog - 技术博客</title>
+    <title>chemystry - 化学科普网站</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -29,26 +29,50 @@
         .prose p {
             margin-bottom: 1em;
         }
+        .molecule {
+            animation: rotate 20s linear infinite;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .chemical-element {
+            transition: all 0.3s ease;
+        }
+        .chemical-element:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+        }
+        .category-tag {
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
     </style>
 </head>
-<body class="bg-white">
+<body class="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 min-h-screen">
     <!-- Header -->
-    <header class="fixed top-0 w-full z-50 transition-all duration-300 bg-transparent" id="header">
+    <header class="fixed top-0 w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-md shadow-lg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-4">
-                <div class="flex items-center space-x-2">
-                    <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open text-white"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-600 rounded-xl flex items-center justify-center">
+                        <span class="text-2xl font-bold text-white">c</span>
                     </div>
-                    <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                        TechBlog
-                    </h1>
+                    <div>
+                        <h1 class="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                            chemystry
+                        </h1>
+                        <p class="text-sm text-gray-600">化学科普探索</p>
+                    </div>
                 </div>
                 
                 <nav class="hidden md:flex space-x-8">
-                    <a href="#home" class="text-gray-700 hover:text-blue-600 transition-colors font-medium">首页</a>
-                    <a href="#blog" class="text-gray-700 hover:text-blue-600 transition-colors font-medium">博客</a>
-                    <a href="#about" class="text-gray-700 hover:text-blue-600 transition-colors font-medium">关于</a>
+                    <a href="#home" class="text-gray-700 hover:text-purple-600 transition-colors font-medium">首页</a>
+                    <a href="#articles" class="text-gray-700 hover:text-purple-600 transition-colors font-medium">文章</a>
+                    <a href="#categories" class="text-gray-700 hover:text-purple-600 transition-colors font-medium">栏目</a>
+                    <a href="#about" class="text-gray-700 hover:text-purple-600 transition-colors font-medium">关于</a>
                 </nav>
 
                 <button class="md:hidden text-gray-700" id="menuButton">
@@ -59,46 +83,246 @@
 
         <div class="md:hidden bg-white border-t hidden" id="mobileMenu">
             <div class="px-4 py-2 space-y-2">
-                <a href="#home" class="block py-2 text-gray-700 hover:text-blue-600">首页</a>
-                <a href="#blog" class="block py-2 text-gray-700 hover:text-blue-600">博客</a>
-                <a href="#about" class="block py-2 text-gray-700 hover:text-blue-600">关于</a>
+                <a href="#home" class="flex items-center space-x-2 py-3 text-gray-700 hover:text-purple-600 border-b border-gray-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-home"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+                    <span>首页</span>
+                </a>
+                <a href="#articles" class="flex items-center space-x-2 py-3 text-gray-700 hover:text-purple-600 border-b border-gray-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                    <span>文章</span>
+                </a>
+                <a href="#categories" class="flex items-center space-x-2 py-3 text-gray-700 hover:text-purple-600 border-b border-gray-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-grid"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+                    <span>栏目</span>
+                </a>
+                <a href="#about" class="flex items-center space-x-2 py-3 text-gray-700 hover:text-purple-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    <span>关于</span>
+                </a>
             </div>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="pt-24 pb-16 bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <section id="home" class="pt-28 pb-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
-                <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-                    探索技术的
-                    <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"> 无限可能</span>
-                </h1>
-                <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-                    深入技术前沿，分享开发经验，探索创新解决方案。这里是开发者的学习园地和思想碰撞的空间。
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 flex items-center space-x-2">
-                        <span>开始阅读</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                    </button>
-                    <button class="border-2 border-gray-300 text-gray-700 px-8 py-3 rounded-lg font-semibold hover:border-blue-500 hover:text-blue-600 transition-all duration-300">
-                        查看最新文章
-                    </button>
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="flex-1 text-center lg:text-left">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+                        欢迎来到
+                        <span class="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent"> chemystry</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                        探索化学的奇妙世界，发现分子间的秘密对话。这里是化学爱好者的知识乐园，用通俗易懂的方式解读科学奥秘。
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#articles" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center space-x-2">
+                            <span>阅读文章</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                        </a>
+                        <a href="#categories" class="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-xl font-semibold hover:border-purple-500 hover:text-purple-600 transition-all duration-300 flex items-center justify-center space-x-2">
+                            <span>浏览栏目</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-grid"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="flex-1 flex justify-center">
+                    <div class="relative w-64 h-64">
+                        <div class="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full opacity-20 animate-pulse"></div>
+                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-white rounded-full shadow-2xl flex items-center justify-center">
+                            <div class="molecule">
+                                <!-- Water molecule -->
+                                <div class="w-8 h-8 bg-blue-600 rounded-full mx-auto mb-4 relative">
+                                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-xs font-bold">O</div>
+                                </div>
+                                <div class="flex justify-center space-x-8">
+                                    <div class="w-6 h-6 bg-red-500 rounded-full relative electron">
+                                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-xs font-bold">H</div>
+                                    </div>
+                                    <div class="w-6 h-6 bg-red-500 rounded-full relative electron" style="animation-delay: 2s;">
+                                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-xs font-bold">H</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Blog Section -->
-    <section id="blog" class="py-16 bg-white">
+    <!-- Categories Section -->
+    <section id="categories" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">特色栏目</h2>
+                <p class="text-xl text-gray-600">探索化学世界的各个角落</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Category 1 -->
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 hover:shadow-xl transition-all duration-300">
+                    <div class="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-flask-conical text-white"><path d="M10 2v7.31"/><path d="M14 9.3V2"/><path d="M8.5 2h7"/><path d="M7 16.5a8 8 0 0 1 10 0"/></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">无机之谈</h3>
+                    <p class="text-gray-600 mb-6">
+                        探索无机化学的奥秘，从简单的盐类到复杂的配位化合物，了解它们在自然界和工业中的应用。
+                    </p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center space-x-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dot text-blue-600"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="2"/></svg>
+                            <span>矿物与晶体</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dot text-blue-600"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="2"/></svg>
+                            <span>酸碱理论</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dot text-blue-600"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="2"/></svg>
+                            <span>配位化学</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Category 2 -->
+                <div class="bg-gradient-to-br from-green-50 to-emerald-100 rounded-2xl p-8 hover:shadow-xl transition-all duration-300">
+                    <div class="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-atom text-white"><circle cx="12" cy="12" r="1"/><path d="M20.2 21c-3-5.4-7.6-9-13.2-9-2.8 0-5.4 1-7.5 2.7"/><path d="M2 2h4l6 15 6-15h4"/></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">元素王国</h3>
+                    <p class="text-gray-600 mb-6">
+                        漫游元素周期表，了解每种元素的独特性格和故事，从活泼的碱金属到高冷的稀有气体。
+                    </p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center space-x-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dot text-green-600"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="2"/></svg>
+                            <span>元素发现史</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dot text-green-600"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="2"/></svg>
+                            <span>元素应用</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dot text-green-600"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="2"/></svg>
+                            <span>元素趣闻</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Category 3 -->
+                <div class="bg-gradient-to-br from-purple-50 to-violet-100 rounded-2xl p-8 hover:shadow-xl transition-all duration-300">
+                    <div class="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-test-tube text-white"><path d="M14.5 2H9.5a1 1 0 0 0-.9.5l-3 6c-.2.5-.2 1.1-.1 1.6l2 8A1 1 0 0 0 8.5 20h7a1 1 0 0 0 1-1.4l2-8c.1-.5.1-1.1-.1-1.6l-3-6A1 1 0 0 0 14.5 2z"/><path d="M12 17v4"/><path d="M9 10h6"/></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">有机反应</h3>
+                    <p class="text-gray-600 mb-6">
+                        揭示有机化学反应的机理，从简单的取代反应到复杂的多步合成，理解碳骨架的构建艺术。
+                    </p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center space-x-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dot text-purple-600"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="2"/></svg>
+                            <span>反应机理</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dot text-purple-600"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="2"/></svg>
+                            <span>合成路线</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dot text-purple-600"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="2"/></svg>
+                            <span>天然产物</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Category 4 -->
+                <div class="bg-gradient-to-br from-orange-50 to-amber-100 rounded-2xl p-8 hover:shadow-xl transition-all duration-300">
+                    <div class="w-12 h-12 bg-orange-600 rounded-xl flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-flask-round text-white"><circle cx="12" cy="12" r="8"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">手搓实验</h3>
+                    <p class="text-gray-600 mb-6">
+                        分享安全有趣的化学实验，从家庭小实验到专业实验室操作，体验化学的实践魅力。
+                    </p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center space-x-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dot text-orange-600"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="2"/></svg>
+                            <span>家庭实验</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dot text-orange-600"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="2"/></svg>
+                            <span>实验技巧</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dot text-orange-600"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="2"/></svg>
+                            <span>安全指南</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Category 5 -->
+                <div class="bg-gradient-to-br from-teal-50 to-cyan-100 rounded-2xl p-8 hover:shadow-xl transition-all duration-300">
+                    <div class="w-12 h-12 bg-teal-600 rounded-xl flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-microscope text-white"><circle cx="9" cy="9" r="3"/><path d="M7 16h1"/><path d="M15.5 12.5 18 10"/><path d="m18 10 2.5-2.5"/><path d="m18 10 2.5 2.5"/><path d="M10 16a10 10 0 1 1 12-9.6"/></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">化学前沿</h3>
+                    <p class="text-gray-600 mb-6">
+                        追踪最新化学研究成果，了解纳米材料、绿色化学、生物化学等前沿领域的突破性进展。
+                    </p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center space-x-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dot text-teal-600"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="2"/></svg>
+                            <span>科研动态</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dot text-teal-600"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="2"/></svg>
+                            <span>技术应用</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dot text-teal-600"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="2"/></svg>
+                            <span>未来展望</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Category 6 -->
+                <div class="bg-gradient-to-br from-rose-50 to-pink-100 rounded-2xl p-8 hover:shadow-xl transition-all duration-300">
+                    <div class="w-12 h-12 bg-rose-600 rounded-xl flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open text-white"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">化学史话</h3>
+                    <p class="text-gray-600 mb-6">
+                        回顾化学发展史上的重要人物和里程碑事件，了解伟大化学家们的生平故事和科学贡献。
+                    </p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center space-x-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dot text-rose-600"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="2"/></svg>
+                            <span>化学家传记</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dot text-rose-600"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="2"/></svg>
+                            <span>重大发现</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dot text-rose-600"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="2"/></svg>
+                            <span>历史事件</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Articles Section -->
+    <section id="articles" class="py-20 bg-gradient-to-br from-purple-50 to-pink-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">最新文章</h2>
-                <p class="text-xl text-gray-600">探索技术前沿，分享开发经验</p>
+                <p class="text-xl text-gray-600">探索化学世界的奇妙知识</p>
             </div>
 
-            <!-- Search and Categories -->
+            <!-- Search and Filter -->
             <div class="mb-8 flex flex-col md:flex-row gap-4 justify-between items-center">
                 <div class="relative flex-1 max-w-md">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%);">
@@ -109,145 +333,327 @@
                         type="text"
                         placeholder="搜索文章..."
                         id="searchInput"
-                        class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                     />
                 </div>
                 
-                <div class="flex flex-wrap gap-2" id="categoryButtons">
-                    <button class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-blue-600 text-white shadow-lg" data-category="所有">
-                        所有
+                <div class="flex flex-wrap gap-2" id="categoryFilter">
+                    <button class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-purple-600 text-white shadow-lg" data-category="all">
+                        全部
                     </button>
-                    <button class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-gray-100 text-gray-700 hover:bg-gray-200" data-category="前端开发">
-                        前端开发
+                    <button class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-gray-100 text-gray-700 hover:bg-gray-200" data-category="inorganic">
+                        无机之谈
                     </button>
-                    <button class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-gray-100 text-gray-700 hover:bg-gray-200" data-category="后端开发">
-                        后端开发
+                    <button class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-gray-100 text-gray-700 hover:bg-gray-200" data-category="elements">
+                        元素王国
                     </button>
-                    <button class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-gray-100 text-gray-700 hover:bg-gray-200" data-category="UI/UX">
-                        UI/UX
+                    <button class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-gray-100 text-gray-700 hover:bg-gray-200" data-category="organic">
+                        有机反应
                     </button>
-                    <button class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-gray-100 text-gray-700 hover:bg-gray-200" data-category="区块链">
-                        区块链
-                    </button>
-                    <button class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-gray-100 text-gray-700 hover:bg-gray-200" data-category="人工智能">
-                        人工智能
+                    <button class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-gray-100 text-gray-700 hover:bg-gray-200" data-category="lab">
+                        手搓实验
                     </button>
                 </div>
             </div>
 
-            <!-- Blog Posts Grid -->
-            <div id="blogPosts" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Posts will be inserted here by JavaScript -->
-            </div>
+            <!-- Articles Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Article 1 -->
+                <article class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group cursor-pointer" onclick="openArticleModal(1)">
+                    <div class="relative overflow-hidden">
+                        <img
+                            src="https://placehold.co/800x400/3b82f6/ffffff?text=Inorganic+Chemistry"
+                            alt="无机化学"
+                            class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+                        />
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-white/90 backdrop-blur-sm text-sm font-medium px-3 py-1 rounded-full text-blue-700 category-tag">
+                                无机之谈
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
+                            酸碱理论的演变：从阿伦尼乌斯到路易斯
+                        </h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">
+                            探索酸碱理论的发展历程，从最初的阿伦尼乌斯定义，到布朗斯特-劳里的质子理论，再到路易斯的电子对理论，了解每种理论的贡献和局限。
+                        </p>
+                        
+                        <div class="flex items-center justify-between text-sm text-gray-500">
+                            <div class="flex items-center space-x-4">
+                                <span class="flex items-center space-x-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                    <span>李教授</span>
+                                </span>
+                                <span class="flex items-center space-x-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/></svg>
+                                    <span>2024-01-15</span>
+                                </span>
+                            </div>
+                            <span class="flex items-center space-x-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                <span>12 min read</span>
+                            </span>
+                        </div>
+                    </div>
+                </article>
 
-            <div id="noResults" class="text-center py-12 hidden">
-                <p class="text-gray-500 text-lg">没有找到相关文章</p>
+                <!-- Article 2 -->
+                <article class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group cursor-pointer" onclick="openArticleModal(2)">
+                    <div class="relative overflow-hidden">
+                        <img
+                            src="https://placehold.co/800x400/10b981/ffffff?text=Elements"
+                            alt="元素"
+                            class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+                        />
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-white/90 backdrop-blur-sm text-sm font-medium px-3 py-1 rounded-full text-green-700 category-tag">
+                                元素王国
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
+                            氟元素：最活泼的非金属
+                        </h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">
+                            深入了解氟元素的特殊性质，为什么它是最活泼的非金属？它在自然界中如何存在？以及它在工业和日常生活中的广泛应用。
+                        </p>
+                        
+                        <div class="flex items-center justify-between text-sm text-gray-500">
+                            <div class="flex items-center space-x-4">
+                                <span class="flex items-center space-x-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                    <span>王博士</span>
+                                </span>
+                                <span class="flex items-center space-x-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/></svg>
+                                    <span>2024-01-12</span>
+                                </span>
+                            </div>
+                            <span class="flex items-center space-x-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                <span>8 min read</span>
+                            </span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 3 -->
+                <article class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group cursor-pointer" onclick="openArticleModal(3)">
+                    <div class="relative overflow-hidden">
+                        <img
+                            src="https://placehold.co/800x400/f59e0b/ffffff?text=Organic+Reaction"
+                            alt="有机反应"
+                            class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+                        />
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-white/90 backdrop-blur-sm text-sm font-medium px-3 py-1 rounded-full text-yellow-700 category-tag">
+                                有机反应
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
+                            亲核取代反应：SN1与SN2的奥秘
+                        </h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">
+                            揭示亲核取代反应的两种机理，比较SN1和SN2反应的特点、影响因素和立体化学，理解反应速率和产物构型的关系。
+                        </p>
+                        
+                        <div class="flex items-center justify-between text-sm text-gray-500">
+                            <div class="flex items-center space-x-4">
+                                <span class="flex items-center space-x-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                    <span>张老师</span>
+                                </span>
+                                <span class="flex items-center space-x-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/></svg>
+                                    <span>2024-01-10</span>
+                                </span>
+                            </div>
+                            <span class="flex items-center space-x-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                <span>15 min read</span>
+                            </span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 4 -->
+                <article class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group cursor-pointer" onclick="openArticleModal(4)">
+                    <div class="relative overflow-hidden">
+                        <img
+                            src="https://placehold.co/800x400/ef4444/ffffff?text=Lab+Experiment"
+                            alt="实验"
+                            class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+                        />
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-white/90 backdrop-blur-sm text-sm font-medium px-3 py-1 rounded-full text-red-700 category-tag">
+                                手搓实验
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
+                            家庭化学实验：自制酸碱指示剂
+                        </h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">
+                            用紫甘蓝制作天然酸碱指示剂，观察不同物质的酸碱性。这是一个安全有趣的家庭实验，适合所有年龄段的化学爱好者。
+                        </p>
+                        
+                        <div class="flex items-center justify-between text-sm text-gray-500">
+                            <div class="flex items-center space-x-4">
+                                <span class="flex items-center space-x-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                    <span>陈老师</span>
+                                </span>
+                                <span class="flex items-center space-x-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/></svg>
+                                    <span>2024-01-08</span>
+                                </span>
+                            </div>
+                            <span class="flex items-center space-x-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                <span>10 min read</span>
+                            </span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 5 -->
+                <article class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group cursor-pointer" onclick="openArticleModal(5)">
+                    <div class="relative overflow-hidden">
+                        <img
+                            src="https://placehold.co/800x400/8b5cf6/ffffff?text=Frontier+Chemistry"
+                            alt="前沿化学"
+                            class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+                        />
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-white/90 backdrop-blur-sm text-sm font-medium px-3 py-1 rounded-full text-purple-700 category-tag">
+                                化学前沿
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
+                            纳米材料：改变世界的微小颗粒
+                        </h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">
+                            探索纳米材料的独特性质和应用前景，从医疗诊断到清洁能源，了解这些微小颗粒如何带来巨大的技术变革。
+                        </p>
+                        
+                        <div class="flex items-center justify-between text-sm text-gray-500">
+                            <div class="flex items-center space-x-4">
+                                <span class="flex items-center space-x-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                    <span>赵研究员</span>
+                                </span>
+                                <span class="flex items-center space-x-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/></svg>
+                                    <span>2024-01-05</span>
+                                </span>
+                            </div>
+                            <span class="flex items-center space-x-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                <span>18 min read</span>
+                            </span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 6 -->
+                <article class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group cursor-pointer" onclick="openArticleModal(6)">
+                    <div class="relative overflow-hidden">
+                        <img
+                            src="https://placehold.co/800x400/06b6d4/ffffff?text=History"
+                            alt="化学史"
+                            class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+                        />
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-white/90 backdrop-blur-sm text-sm font-medium px-3 py-1 rounded-full text-cyan-700 category-tag">
+                                化学史话
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
+                            居里夫人：放射性研究的先驱
+                        </h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">
+                            回顾玛丽·居里的一生，了解她如何发现镭和钋，开创放射性研究领域，以及她作为女性科学家在科学史上的重要地位。
+                        </p>
+                        
+                        <div class="flex items-center justify-between text-sm text-gray-500">
+                            <div class="flex items-center space-x-4">
+                                <span class="flex items-center space-x-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                    <span>刘教授</span>
+                                </span>
+                                <span class="flex items-center space-x-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/></svg>
+                                    <span>2024-01-03</span>
+                                </span>
+                            </div>
+                            <span class="flex items-center space-x-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                <span>14 min read</span>
+                            </span>
+                        </div>
+                    </div>
+                </article>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-16 bg-gray-50">
+    <section id="about" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-12 items-center">
                 <div>
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">关于 TechBlog</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">关于 chemystry</h2>
                     <p class="text-lg text-gray-600 mb-6">
-                        TechBlog 是一个专注于技术分享的平台，致力于为开发者提供高质量的技术文章和实用的开发经验。
+                        chemystry 是一个致力于化学科普的网站，旨在用通俗易懂的方式向大众传播化学知识，激发人们对科学的兴趣。
                     </p>
                     <p class="text-lg text-gray-600 mb-8">
-                        我们相信知识共享的力量，希望通过这个平台连接全球的开发者，共同推动技术进步。
+                        我们相信，化学不仅仅是试管和烧杯，更是理解世界的一把钥匙。从日常生活中的现象到宇宙的奥秘，化学无处不在。
                     </p>
                     
                     <div class="grid grid-cols-2 gap-6">
-                        <div class="text-center p-6 bg-white rounded-xl shadow-md">
-                            <div class="text-3xl font-bold text-blue-600 mb-2">100+</div>
-                            <div class="text-gray-600">技术文章</div>
+                        <div class="text-center p-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl">
+                            <div class="text-2xl font-bold text-purple-600 mb-2">100+</div>
+                            <div class="text-gray-600">科普文章</div>
                         </div>
-                        <div class="text-center p-6 bg-white rounded-xl shadow-md">
-                            <div class="text-3xl font-bold text-purple-600 mb-2">50K+</div>
-                            <div class="text-gray-600">月活跃用户</div>
+                        <div class="text-center p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl">
+                            <div class="text-2xl font-bold text-blue-600 mb-2">6</div>
+                            <div class="text-gray-600">特色栏目</div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="grid grid-cols-2 gap-4">
+                <div class="relative">
                     <img
-                        src="https://placehold.co/300x200/3b82f6/ffffff?text=Team"
-                        alt="团队"
-                        class="rounded-lg shadow-lg"
+                        src="https://placehold.co/500x600/fef3ff/9333ea?text=Chemistry+Lover"
+                        alt="化学爱好者"
+                        class="rounded-2xl shadow-2xl"
                     />
-                    <img
-                        src="https://placehold.co/300x200/10b981/ffffff?text=Code"
-                        alt="代码"
-                        class="rounded-lg shadow-lg mt-8"
-                    />
-                    <img
-                        src="https://placehold.co/300x200/f59e0b/ffffff?text=Innovation"
-                        alt="创新"
-                        class="rounded-lg shadow-lg"
-                    />
-                    <img
-                        src="https://placehold.co/300x200/8b5cf6/ffffff?text=Community"
-                        alt="社区"
-                        class="rounded-lg shadow-lg mt-8"
-                    />
+                    <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-r from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center">
+                        <span class="text-2xl font-bold text-white">c</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-4 gap-8">
-                <div class="md:col-span-2">
-                    <div class="flex items-center space-x-2 mb-4">
-                        <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open text-white"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                        </div>
-                        <h3 class="text-xl font-bold">TechBlog</h3>
-                    </div>
-                    <p class="text-gray-400 mb-4">
-                        分享技术，连接开发者，推动创新。这里是技术爱好者的家园。
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gray-700 transition-colors">T</a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gray-700 transition-colors">G</a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gray-700 transition-colors">L</a>
-                    </div>
-                </div>
-                
-                <div>
-                    <h4 class="font-semibold mb-4">快速链接</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#home" class="hover:text-white transition-colors">首页</a></li>
-                        <li><a href="#blog" class="hover:text-white transition-colors">博客</a></li>
-                        <li><a href="#about" class="hover:text-white transition-colors">关于</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">联系我们</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="font-semibold mb-4">分类</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white transition-colors">前端开发</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">后端开发</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">UI/UX</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">区块链</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">人工智能</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2024 TechBlog. 保留所有权利。</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Post Modal -->
-    <div id="postModal" class="fixed inset-0 z-50 overflow-y-auto bg-black/80 flex items-center justify-center p-4 hidden">
+    <!-- Article Modal -->
+    <div id="articleModal" class="fixed inset-0 z-50 overflow-y-auto bg-black/80 flex items-center justify-center p-4 hidden">
         <div class="bg-white rounded-2xl max-w-4xl w-full max-h-screen overflow-y-auto">
             <div class="relative">
                 <img id="modalImage" src="" alt="" class="w-full h-64 object-cover">
@@ -272,15 +678,11 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/></svg>
                             <span id="modalDate"></span>
                         </span>
-                        <span class="flex items-center space-x-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                            <span id="modalReadTime"></span>
-                        </span>
                     </div>
-                </div>
-
-                <div id="modalTags" class="mb-6">
-                    <!-- Tags will be inserted here -->
+                    <span class="flex items-center space-x-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        <span id="modalReadTime"></span>
+                    </span>
                 </div>
 
                 <div class="prose prose-lg max-w-none">
@@ -293,10 +695,10 @@
                             <img id="modalAuthorImg" src="" alt="" class="w-10 h-10 rounded-full">
                             <div>
                                 <p id="modalAuthorName" class="font-semibold text-gray-900"></p>
-                                <p class="text-sm text-gray-600">技术博主</p>
+                                <p class="text-sm text-gray-600">化学科普作家</p>
                             </div>
                         </div>
-                        <button class="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center space-x-2">
+                        <button class="bg-purple-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-purple-700 transition-colors flex items-center space-x-2">
                             <span>分享文章</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right"><line x1="7" x2="17" y1="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
                         </button>
@@ -306,97 +708,146 @@
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-600 rounded-xl flex items-center justify-center">
+                            <span class="text-xl font-bold text-white">c</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">chemystry</h3>
+                            <p class="text-sm text-gray-400">化学科普探索</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        用通俗易懂的方式解读化学奥秘，激发科学兴趣，探索分子世界的无限可能。
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gray-700 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gray-700 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-flask-conical"><path d="M10 2v7.31"/><path d="M14 9.3V2"/><path d="M8.5 2h7"/><path d="M7 16.5a8 8 0 0 1 10 0"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gray-700 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-microscope"><circle cx="9" cy="9" r="3"/><path d="M7 16h1"/><path d="M15.5 12.5 18 10"/><path d="m18 10 2.5-2.5"/><path d="m18 10 2.5 2.5"/><path d="M10 16a10 10 0 1 1 12-9.6"/></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">栏目导航</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#categories" class="hover:text-white transition-colors">无机之谈</a></li>
+                        <li><a href="#categories" class="hover:text-white transition-colors">元素王国</a></li>
+                        <li><a href="#categories" class="hover:text-white transition-colors">有机反应</a></li>
+                        <li><a href="#categories" class="hover:text-white transition-colors">手搓实验</a></li>
+                        <li><a href="#categories" class="hover:text-white transition-colors">化学前沿</a></li>
+                        <li><a href="#categories" class="hover:text-white transition-colors">化学史话</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">快速链接</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#home" class="hover:text-white transition-colors">首页</a></li>
+                        <li><a href="#articles" class="hover:text-white transition-colors">文章</a></li>
+                        <li><a href="#categories" class="hover:text-white transition-colors">栏目</a></li>
+                        <li><a href="#about" class="hover:text-white transition-colors">关于</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 chemystry. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
     <script>
-        // Blog posts data
-        const blogPosts = [
+        // Articles data
+        const articles = [
             {
                 id: 1,
-                title: "React 18新特性全面解析",
-                excerpt: "深入探讨React 18带来的并发渲染、自动批处理等革命性更新，以及如何在实际项目中应用这些新特性。",
-                content: "React 18带来了许多令人兴奋的新特性，包括并发渲染、自动批处理、新的根API等。这些更新不仅提升了应用性能，还为开发者提供了更多控制UI渲染的工具。并发渲染允许React在渲染过程中中断和恢复，从而提高应用的响应性。",
-                author: "张伟",
+                title: "酸碱理论的演变：从阿伦尼乌斯到路易斯",
+                content: "酸碱理论经历了漫长的发展过程。最初，瑞典化学家阿伦尼乌斯在1884年提出了酸碱电离理论，认为酸是在水溶液中电离产生H⁺离子的物质，碱是电离产生OH⁻离子的物质。这一理论成功解释了水溶液中的酸碱行为，但局限性也很明显，它只能解释水溶液中的酸碱反应，且无法解释氨气等物质的碱性。\n\n1923年，丹麦化学家布朗斯特和英国化学家劳里同时提出了质子理论，认为酸是质子给予体，碱是质子接受体。这一理论突破了溶剂的限制，可以解释非水溶剂中的酸碱反应，如液氨体系。例如，在液氨中，NH₄⁺是酸，NH₂⁻是碱。\n\n同年，美国化学家路易斯提出了更广泛的电子理论，认为酸是电子对接受体，碱是电子对给予体。这一理论涵盖了所有前两种理论，还能解释配位化合物的形成。例如，BF₃是路易斯酸，NH₃是路易斯碱，它们形成BF₃·NH₃加合物。",
+                author: "李教授",
                 date: "2024-01-15",
-                readTime: "8 min read",
-                category: "前端开发",
-                image: "https://placehold.co/800x400/3b82f6/ffffff?text=React+18",
-                tags: ["React", "JavaScript", "前端"]
+                readTime: "12 min read",
+                category: "inorganic",
+                image: "https://placehold.co/800x400/3b82f6/ffffff?text=Inorganic+Chemistry"
             },
             {
                 id: 2,
-                title: "设计系统构建指南",
-                excerpt: "从零开始构建企业级设计系统，涵盖设计原则、组件库、文档化和团队协作的最佳实践。",
-                content: "设计系统是现代产品开发的核心。它不仅包含UI组件库，还涉及设计原则、品牌指南、交互模式和开发工具。一个完善的设计系统可以显著提高开发效率，确保产品体验的一致性。",
-                author: "李娜",
+                title: "氟元素：最活泼的非金属",
+                content: "氟是元素周期表中最活泼的非金属元素，其电负性高达4.0，是所有元素中最高的。这种极强的电负性使得氟具有极强的氧化性，能与除氦、氖、氩外的所有元素直接反应，甚至能与惰性气体氙反应生成氟化物。\n\n在自然界中，氟主要以萤石(CaF₂)、冰晶石(Na₃AlF₆)等形式存在。由于其高反应活性，氟在1886年才被法国化学家莫瓦桑首次制备出来，他通过电解无水氟化氢和氟化钾的混合物获得了单质氟。\n\n氟的化合物在现代生活中有广泛应用。氟化钠添加在牙膏中可以预防龋齿；聚四氟乙烯(特氟龙)具有极佳的耐腐蚀性和不粘性，用于不粘锅涂层；氟利昂曾广泛用作制冷剂，但由于对臭氧层的破坏，现已被限制使用。氟还用于核燃料的加工，六氟化铀是铀浓缩过程中的重要化合物。",
+                author: "王博士",
                 date: "2024-01-12",
-                readTime: "12 min read",
-                category: "UI/UX",
-                image: "https://placehold.co/800x400/10b981/ffffff?text=Design+System",
-                tags: ["设计系统", "UI", "UX"]
+                readTime: "8 min read",
+                category: "elements",
+                image: "https://placehold.co/800x400/10b981/ffffff?text=Elements"
             },
             {
                 id: 3,
-                title: "Node.js性能优化实战",
-                excerpt: "通过实际案例分享Node.js应用性能瓶颈的诊断方法和优化策略，包括内存管理、异步处理和数据库查询优化。",
-                content: "Node.js应用的性能优化需要从多个维度考虑。首先应该使用性能分析工具识别瓶颈，然后针对性地优化代码。常见的优化点包括减少内存泄漏、优化异步操作、改进数据库查询和缓存策略。",
-                author: "王强",
+                title: "亲核取代反应：SN1与SN2的奥秘",
+                content: "亲核取代反应是有机化学中的基本反应类型，分为SN1和SN2两种机理。SN2反应是双分子亲核取代，反应一步完成，亲核试剂从离去基团的背面进攻碳原子，导致构型翻转。反应速率与底物和亲核试剂的浓度都成正比，遵循二级动力学。\n\n影响SN2反应的主要因素包括：底物的空间位阻，甲基卤代烃反应最快，叔卤代烃最难发生SN2反应；亲核试剂的亲核性，强亲核试剂如CN⁻、OH⁻有利于SN2反应；溶剂的极性，非质子极性溶剂如DMF、DMSO有利于SN2反应。\n\nSN1反应是单分子亲核取代，反应分步进行，首先离去基团离开形成碳正离子中间体，然后亲核试剂进攻。反应速率只与底物浓度有关，遵循一级动力学。SN1反应容易发生外消旋化，因为平面型的碳正离子可以从两面被进攻。叔卤代烃倾向于发生SN1反应，而甲基和伯卤代烃倾向于发生SN2反应。",
+                author: "张老师",
                 date: "2024-01-10",
                 readTime: "15 min read",
-                category: "后端开发",
-                image: "https://placehold.co/800x400/f59e0b/ffffff?text=Node.js",
-                tags: ["Node.js", "性能优化", "后端"]
+                category: "organic",
+                image: "https://placehold.co/800x400/f59e0b/ffffff?text=Organic+Reaction"
             },
             {
                 id: 4,
-                title: "Web3入门：区块链开发基础",
-                excerpt: "介绍区块链技术基本概念，手把手教你搭建第一个智能合约，并部署到测试网络。",
-                content: "Web3正在重塑互联网的未来。区块链技术提供了去中心化的数据存储和价值传输机制。通过智能合约，我们可以创建无需信任的自动化协议。本教程将带你从零开始学习区块链开发。",
-                author: "陈明",
+                title: "家庭化学实验：自制酸碱指示剂",
+                content: "紫甘蓝中含有花青素，这是一种天然的酸碱指示剂。在不同pH条件下，花青素会呈现不同的颜色：在酸性环境中呈红色，在中性环境中呈紫色，在碱性环境中呈绿色或黄色。\n\n实验步骤：将紫甘蓝切碎，加入热水浸泡10分钟，过滤得到紫色的提取液。然后准备几种家用物质：柠檬汁(酸性)、白醋(酸性)、水(中性)、小苏打溶液(碱性)、肥皂水(碱性)。将提取液分别加入这些物质中，观察颜色变化。\n\n这个实验不仅有趣，还能帮助理解酸碱的概念。花青素的颜色变化是由于其分子结构随pH改变而发生变化。在酸性条件下，花青素以黄烊盐阳离子形式存在，呈红色；在碱性条件下，以醌型碱形式存在，呈蓝色或绿色。\n\n安全提示：实验时佩戴护目镜，避免将溶液溅入眼睛。虽然紫甘蓝提取液无毒，但仍不建议饮用。",
+                author: "陈老师",
                 date: "2024-01-08",
-                readTime: "20 min read",
-                category: "区块链",
-                image: "https://placehold.co/800x400/8b5cf6/ffffff?text=Web3",
-                tags: ["区块链", "Web3", "智能合约"]
+                readTime: "10 min read",
+                category: "lab",
+                image: "https://placehold.co/800x400/ef4444/ffffff?text=Lab+Experiment"
             },
             {
                 id: 5,
-                title: "AI辅助编程的未来",
-                excerpt: "探讨AI编程助手如何改变开发工作流，分析当前技术局限和未来发展趋势。",
-                content: "AI编程助手正在迅速改变软件开发的方式。从代码补全到错误检测，从文档生成到架构设计，AI正在成为开发者的强大助手。然而，我们也需要认识到当前技术的局限性，避免过度依赖。",
-                author: "赵静",
+                title: "纳米材料：改变世界的微小颗粒",
+                content: "纳米材料是指至少在一维尺度上小于100纳米的材料。在这个尺度上，材料会表现出与宏观材料不同的特殊性质，如量子尺寸效应、表面效应和宏观量子隧道效应。\n\n碳纳米管是纳米材料的代表之一，它是由石墨烯卷曲而成的管状结构，具有极高的强度和导电性。单根碳纳米管的强度是钢的100倍，而密度只有钢的1/6。它们可用于复合材料、电子器件和储能设备。\n\n量子点是半导体纳米晶体，其发光颜色可以通过精确控制尺寸来调节。较小的量子点发射蓝光，较大的发射红光。这一特性使其在显示技术、生物标记和太阳能电池中有广泛应用。\n\n金纳米颗粒在癌症治疗中显示出巨大潜力。它们可以被设计成靶向癌细胞，并通过近红外光照射产生热量，选择性地杀死癌细胞，而对正常组织损伤较小。纳米技术正在医疗、能源、环境等领域带来革命性变革。",
+                author: "赵研究员",
                 date: "2024-01-05",
-                readTime: "10 min read",
-                category: "人工智能",
-                image: "https://placehold.co/800x400/ef4444/ffffff?text=AI+Programming",
-                tags: ["AI", "编程", "未来"]
+                readTime: "18 min read",
+                category: "frontier",
+                image: "https://placehold.co/800x400/8b5cf6/ffffff?text=Frontier+Chemistry"
             },
             {
                 id: 6,
-                title: "响应式设计最佳实践",
-                excerpt: "分享现代响应式设计的实用技巧，确保你的网站在各种设备上都能提供出色的用户体验。",
-                content: "响应式设计不仅仅是使用媒体查询。它需要考虑内容优先级、触摸友好性、性能优化和可访问性。通过合理的断点设置、灵活的布局和适当的图片处理，可以创建真正适应各种设备的网站。",
-                author: "刘洋",
+                title: "居里夫人：放射性研究的先驱",
+                content: "玛丽·居里是第一位获得诺贝尔奖的女性，也是唯一一位在物理和化学两个领域都获得诺贝尔奖的人。她与丈夫皮埃尔·居里共同研究放射性现象，发现了两种新元素：钋(以她的祖国波兰命名)和镭。\n\n为了提取纯镭，居里夫妇处理了数吨沥青铀矿，经过艰苦的化学分离，最终在1902年获得了0.1克氯化镭。这项工作不仅需要精湛的化学技术，还需要极大的毅力和耐心。居里夫人创造了'放射性'这个词来描述这种新现象。\n\n第一次世界大战期间，居里夫人开发了移动式X光设备，为前线医院提供服务，拯救了无数伤员的生命。她还培训了150名放射技师。居里夫人将科学发现无私地奉献给全人类，没有为X光设备申请专利。\n\n遗憾的是，长期暴露在放射性物质中损害了居里夫人的健康，她最终因再生障碍性贫血去世。她的笔记本至今仍具有放射性，保存在铅盒中。居里夫人不仅是伟大的科学家，也是科学精神的典范。",
+                author: "刘教授",
                 date: "2024-01-03",
-                readTime: "7 min read",
-                category: "前端开发",
-                image: "https://placehold.co/800x400/06b6d4/ffffff?text=Responsive+Design",
-                tags: ["响应式", "CSS", "移动端"]
+                readTime: "14 min read",
+                category: "history",
+                image: "https://placehold.co/800x400/06b6d4/ffffff?text=History"
             }
         ];
-
-        // State
-        let selectedCategory = "所有";
-        let searchTerm = "";
-        let selectedPost = null;
+        {
+            id: 7,
+            title: "水的奇妙性质：生命之源",
+            content: "水是地球上最常见的化合物之一，但它的性质却非常特殊。由于水分子具有极性，水分子之间能形成氢键，这使得水具有许多独特的性质。\n\n水的密度在4°C时最大，这解释了为什么冰会浮在水面上。这一特性对水生生物的生存至关重要，因为冰层可以隔绝寒冷，保护水下生物。\n\n水还具有很高的比热容，这意味着它能吸收或释放大量热量而自身温度变化不大。这一特性调节了地球的气候，使温度变化更加温和。",
+            author: "化学爱好者",
+            date: "2024-01-20",
+            readTime: "8 min read",
+            category: "inorganic",
+            image: "https://placehold.co/800x400/0ea5e9/ffffff?text=Water+Chemistry"
+        };  
 
         // DOM Elements
-        const header = document.getElementById('header');
         const menuButton = document.getElementById('menuButton');
         const mobileMenu = document.getElementById('mobileMenu');
         const searchInput = document.getElementById('searchInput');
-        const categoryButtons = document.getElementById('categoryButtons');
-        const blogPostsContainer = document.getElementById('blogPosts');
-        const noResults = document.getElementById('noResults');
-        const postModal = document.getElementById('postModal');
+        const categoryFilter = document.getElementById('categoryFilter');
+        const articleModal = document.getElementById('articleModal');
         const closeModal = document.getElementById('closeModal');
         const modalImage = document.getElementById('modalImage');
         const modalCategory = document.getElementById('modalCategory');
@@ -405,20 +856,23 @@
         const modalDate = document.getElementById('modalDate');
         const modalReadTime = document.getElementById('modalReadTime');
         const modalContent = document.getElementById('modalContent');
-        const modalTags = document.getElementById('modalTags');
         const modalAuthorImg = document.getElementById('modalAuthorImg');
         const modalAuthorName = document.getElementById('modalAuthorName');
+
+        // State
+        let selectedCategory = 'all';
+        let searchTerm = '';
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize Lucide icons
             lucide.createIcons();
             
-            // Render initial posts
-            renderBlogPosts();
-            
-            // Set up event listeners
+            // Setup event listeners
             setupEventListeners();
+            
+            // Initial filter
+            filterArticles();
         });
 
         // Setup event listeners
@@ -437,142 +891,97 @@
 
             // Search input
             searchInput.addEventListener('input', (e) => {
-                searchTerm = e.target.value;
-                renderBlogPosts();
+                searchTerm = e.target.value.toLowerCase();
+                filterArticles();
             });
 
-            // Category buttons
-            categoryButtons.addEventListener('click', (e) => {
+            // Category filter
+            categoryFilter.addEventListener('click', (e) => {
                 if (e.target.tagName === 'BUTTON') {
-                    document.querySelectorAll('#categoryButtons button').forEach(btn => {
-                        btn.classList.remove('bg-blue-600', 'text-white', 'shadow-lg');
+                    document.querySelectorAll('#categoryFilter button').forEach(btn => {
+                        btn.classList.remove('bg-purple-600', 'text-white', 'shadow-lg');
                         btn.classList.add('bg-gray-100', 'text-gray-700');
                     });
                     e.target.classList.remove('bg-gray-100', 'text-gray-700');
-                    e.target.classList.add('bg-blue-600', 'text-white', 'shadow-lg');
+                    e.target.classList.add('bg-purple-600', 'text-white', 'shadow-lg');
                     selectedCategory = e.target.dataset.category;
-                    renderBlogPosts();
+                    filterArticles();
                 }
             });
 
             // Close modal
             closeModal.addEventListener('click', () => {
-                postModal.classList.add('hidden');
+                articleModal.classList.add('hidden');
             });
 
             // Close modal when clicking outside
-            postModal.addEventListener('click', (e) => {
-                if (e.target === postModal) {
-                    postModal.classList.add('hidden');
+            articleModal.addEventListener('click', (e) => {
+                if (e.target === articleModal) {
+                    articleModal.classList.add('hidden');
                 }
             });
 
-            // Scroll event for header
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    header.classList.remove('bg-transparent');
-                    header.classList.add('bg-white/95', 'backdrop-blur-md', 'shadow-lg');
-                } else {
-                    header.classList.add('bg-transparent');
-                    header.classList.remove('bg-white/95', 'backdrop-blur-md', 'shadow-lg');
-                }
+            // Smooth scrolling for navigation
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
             });
         }
 
-        // Render blog posts
-        function renderBlogPosts() {
-            const filteredPosts = blogPosts.filter(post => {
-                const matchesCategory = selectedCategory === "所有" || post.category === selectedCategory;
-                const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                                    post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                                    post.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
+        // Filter articles
+        function filterArticles() {
+            const filteredArticles = articles.filter(article => {
+                const matchesCategory = selectedCategory === 'all' || article.category === selectedCategory;
+                const matchesSearch = searchTerm === '' || 
+                                    article.title.toLowerCase().includes(searchTerm) ||
+                                    article.content.toLowerCase().includes(searchTerm) ||
+                                    article.author.toLowerCase().includes(searchTerm);
                 return matchesCategory && matchesSearch;
             });
 
-            blogPostsContainer.innerHTML = '';
-            
-            if (filteredPosts.length === 0) {
-                noResults.classList.remove('hidden');
-                return;
-            }
-            
-            noResults.classList.add('hidden');
-            
-            filteredPosts.forEach(post => {
-                const postElement = document.createElement('article');
-                postElement.className = 'bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group cursor-pointer';
-                postElement.innerHTML = `
-                    <div class="relative overflow-hidden">
-                        <img src="${post.image}" alt="${post.title}" class="w-full h-48 object-cover">
-                        <div class="absolute top-4 left-4">
-                            <span class="bg-white/90 backdrop-blur-sm text-sm font-medium px-3 py-1 rounded-full text-gray-700">
-                                ${post.category}
-                            </span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
-                            ${post.title}
-                        </h3>
-                        <p class="text-gray-600 mb-4 line-clamp-3">
-                            ${post.excerpt}
-                        </p>
-                        <div class="flex items-center justify-between text-sm text-gray-500">
-                            <div class="flex items-center space-x-4">
-                                <span class="flex items-center space-x-1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                                    <span>${post.author}</span>
-                                </span>
-                                <span class="flex items-center space-x-1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/></svg>
-                                    <span>${post.date}</span>
-                                </span>
-                            </div>
-                            <span class="flex items-center space-x-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                                <span>${post.readTime}</span>
-                            </span>
-                        </div>
-                    </div>
-                `;
-                
-                postElement.addEventListener('click', () => openPostModal(post));
-                blogPostsContainer.appendChild(postElement);
-            });
-            
-            // Re-initialize icons
-            lucide.createIcons();
+            // Update the articles display (in a real site, this would update the DOM)
+            console.log(`显示 ${filteredArticles.length} 篇文章`);
         }
 
-        // Open post modal
-        function openPostModal(post) {
-            selectedPost = post;
+        // Open article modal
+        function openArticleModal(articleId) {
+            const article = articles.find(a => a.id === articleId);
+            if (!article) return;
+
+            modalImage.src = article.image;
+            modalImage.alt = article.title;
+            modalCategory.textContent = getCategoryName(article.category);
+            modalTitle.textContent = article.title;
+            modalAuthor.textContent = article.author;
+            modalDate.textContent = article.date;
+            modalReadTime.textContent = article.readTime;
+            modalContent.textContent = article.content;
+            modalAuthorName.textContent = article.author;
+            modalAuthorImg.src = `https://placehold.co/40x40/ddd/333?text=${article.author.charAt(0)}`;
             
-            modalImage.src = post.image;
-            modalImage.alt = post.title;
-            modalCategory.textContent = post.category;
-            modalTitle.textContent = post.title;
-            modalAuthor.textContent = post.author;
-            modalDate.textContent = post.date;
-            modalReadTime.textContent = post.readTime;
-            modalContent.textContent = post.content;
-            modalAuthorName.textContent = post.author;
-            modalAuthorImg.src = `https://placehold.co/40x40/ddd/333?text=${post.author.charAt(0)}`;
-            
-            // Clear and add tags
-            modalTags.innerHTML = '';
-            post.tags.forEach(tag => {
-                const tagSpan = document.createElement('span');
-                tagSpan.className = 'inline-block bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full mr-2 mb-2';
-                tagSpan.textContent = tag;
-                modalTags.appendChild(tagSpan);
-            });
-            
-            postModal.classList.remove('hidden');
+            articleModal.classList.remove('hidden');
         }
 
-        // Initial render
-        renderBlogPosts();
+        // Get category name in Chinese
+        function getCategoryName(category) {
+            const names = {
+                'inorganic': '无机之谈',
+                'elements': '元素王国',
+                'organic': '有机反应',
+                'lab': '手搓实验',
+                'frontier': '化学前沿',
+                'history': '化学史话'
+            };
+            return names[category] || category;
+        }
     </script>
 </body>
 </html>
