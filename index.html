@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechBlog - 技术博客</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .prose {
+            max-width: none;
+        }
+        .prose p {
+            margin-bottom: 1em;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="fixed top-0 w-full z-50 transition-all duration-300 bg-transparent" id="header">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open text-white"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                    </div>
+                    <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                        TechBlog
+                    </h1>
+                </div>
+                
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-blue-600 transition-colors font-medium">首页</a>
+                    <a href="#blog" class="text-gray-700 hover:text-blue-600 transition-colors font-medium">博客</a>
+                    <a href="#about" class="text-gray-700 hover:text-blue-600 transition-colors font-medium">关于</a>
+                </nav>
+
+                <button class="md:hidden text-gray-700" id="menuButton">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="md:hidden bg-white border-t hidden" id="mobileMenu">
+            <div class="px-4 py-2 space-y-2">
+                <a href="#home" class="block py-2 text-gray-700 hover:text-blue-600">首页</a>
+                <a href="#blog" class="block py-2 text-gray-700 hover:text-blue-600">博客</a>
+                <a href="#about" class="block py-2 text-gray-700 hover:text-blue-600">关于</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-24 pb-16 bg-gradient-to-br from-blue-50 via-white to-purple-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+                    探索技术的
+                    <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"> 无限可能</span>
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+                    深入技术前沿，分享开发经验，探索创新解决方案。这里是开发者的学习园地和思想碰撞的空间。
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 flex items-center space-x-2">
+                        <span>开始阅读</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </button>
+                    <button class="border-2 border-gray-300 text-gray-700 px-8 py-3 rounded-lg font-semibold hover:border-blue-500 hover:text-blue-600 transition-all duration-300">
+                        查看最新文章
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">最新文章</h2>
+                <p class="text-xl text-gray-600">探索技术前沿，分享开发经验</p>
+            </div>
+
+            <!-- Search and Categories -->
+            <div class="mb-8 flex flex-col md:flex-row gap-4 justify-between items-center">
+                <div class="relative flex-1 max-w-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%);">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="m21 21-4.3-4.3"/>
+                    </svg>
+                    <input
+                        type="text"
+                        placeholder="搜索文章..."
+                        id="searchInput"
+                        class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    />
+                </div>
+                
+                <div class="flex flex-wrap gap-2" id="categoryButtons">
+                    <button class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-blue-600 text-white shadow-lg" data-category="所有">
+                        所有
+                    </button>
+                    <button class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-gray-100 text-gray-700 hover:bg-gray-200" data-category="前端开发">
+                        前端开发
+                    </button>
+                    <button class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-gray-100 text-gray-700 hover:bg-gray-200" data-category="后端开发">
+                        后端开发
+                    </button>
+                    <button class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-gray-100 text-gray-700 hover:bg-gray-200" data-category="UI/UX">
+                        UI/UX
+                    </button>
+                    <button class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-gray-100 text-gray-700 hover:bg-gray-200" data-category="区块链">
+                        区块链
+                    </button>
+                    <button class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 bg-gray-100 text-gray-700 hover:bg-gray-200" data-category="人工智能">
+                        人工智能
+                    </button>
+                </div>
+            </div>
+
+            <!-- Blog Posts Grid -->
+            <div id="blogPosts" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Posts will be inserted here by JavaScript -->
+            </div>
+
+            <div id="noResults" class="text-center py-12 hidden">
+                <p class="text-gray-500 text-lg">没有找到相关文章</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">关于 TechBlog</h2>
+                    <p class="text-lg text-gray-600 mb-6">
+                        TechBlog 是一个专注于技术分享的平台，致力于为开发者提供高质量的技术文章和实用的开发经验。
+                    </p>
+                    <p class="text-lg text-gray-600 mb-8">
+                        我们相信知识共享的力量，希望通过这个平台连接全球的开发者，共同推动技术进步。
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="text-center p-6 bg-white rounded-xl shadow-md">
+                            <div class="text-3xl font-bold text-blue-600 mb-2">100+</div>
+                            <div class="text-gray-600">技术文章</div>
+                        </div>
+                        <div class="text-center p-6 bg-white rounded-xl shadow-md">
+                            <div class="text-3xl font-bold text-purple-600 mb-2">50K+</div>
+                            <div class="text-gray-600">月活跃用户</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <img
+                        src="https://placehold.co/300x200/3b82f6/ffffff?text=Team"
+                        alt="团队"
+                        class="rounded-lg shadow-lg"
+                    />
+                    <img
+                        src="https://placehold.co/300x200/10b981/ffffff?text=Code"
+                        alt="代码"
+                        class="rounded-lg shadow-lg mt-8"
+                    />
+                    <img
+                        src="https://placehold.co/300x200/f59e0b/ffffff?text=Innovation"
+                        alt="创新"
+                        class="rounded-lg shadow-lg"
+                    />
+                    <img
+                        src="https://placehold.co/300x200/8b5cf6/ffffff?text=Community"
+                        alt="社区"
+                        class="rounded-lg shadow-lg mt-8"
+                    />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open text-white"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold">TechBlog</h3>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        分享技术，连接开发者，推动创新。这里是技术爱好者的家园。
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gray-700 transition-colors">T</a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gray-700 transition-colors">G</a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gray-700 transition-colors">L</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">快速链接</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#home" class="hover:text-white transition-colors">首页</a></li>
+                        <li><a href="#blog" class="hover:text-white transition-colors">博客</a></li>
+                        <li><a href="#about" class="hover:text-white transition-colors">关于</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">联系我们</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">分类</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">前端开发</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">后端开发</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">UI/UX</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">区块链</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">人工智能</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 TechBlog. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Post Modal -->
+    <div id="postModal" class="fixed inset-0 z-50 overflow-y-auto bg-black/80 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-screen overflow-y-auto">
+            <div class="relative">
+                <img id="modalImage" src="" alt="" class="w-full h-64 object-cover">
+                <button id="closeModal" class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm p-2 rounded-full text-gray-600 hover:text-gray-800 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+                </button>
+                <div class="absolute bottom-4 left-4">
+                    <span id="modalCategory" class="bg-white/90 backdrop-blur-sm text-sm font-medium px-3 py-1 rounded-full text-gray-700"></span>
+                </div>
+            </div>
+            
+            <div class="p-8">
+                <h1 id="modalTitle" class="text-3xl font-bold text-gray-900 mb-4"></h1>
+                
+                <div class="flex items-center justify-between mb-6 text-sm text-gray-500">
+                    <div class="flex items-center space-x-6">
+                        <span class="flex items-center space-x-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                            <span id="modalAuthor"></span>
+                        </span>
+                        <span class="flex items-center space-x-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/></svg>
+                            <span id="modalDate"></span>
+                        </span>
+                        <span class="flex items-center space-x-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            <span id="modalReadTime"></span>
+                        </span>
+                    </div>
+                </div>
+
+                <div id="modalTags" class="mb-6">
+                    <!-- Tags will be inserted here -->
+                </div>
+
+                <div class="prose prose-lg max-w-none">
+                    <p id="modalContent" class="text-gray-700 leading-relaxed text-lg"></p>
+                </div>
+
+                <div class="mt-8 pt-6 border-t border-gray-200">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-4">
+                            <img id="modalAuthorImg" src="" alt="" class="w-10 h-10 rounded-full">
+                            <div>
+                                <p id="modalAuthorName" class="font-semibold text-gray-900"></p>
+                                <p class="text-sm text-gray-600">技术博主</p>
+                            </div>
+                        </div>
+                        <button class="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center space-x-2">
+                            <span>分享文章</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right"><line x1="7" x2="17" y1="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Blog posts data
+        const blogPosts = [
+            {
+                id: 1,
+                title: "React 18新特性全面解析",
+                excerpt: "深入探讨React 18带来的并发渲染、自动批处理等革命性更新，以及如何在实际项目中应用这些新特性。",
+                content: "React 18带来了许多令人兴奋的新特性，包括并发渲染、自动批处理、新的根API等。这些更新不仅提升了应用性能，还为开发者提供了更多控制UI渲染的工具。并发渲染允许React在渲染过程中中断和恢复，从而提高应用的响应性。",
+                author: "张伟",
+                date: "2024-01-15",
+                readTime: "8 min read",
+                category: "前端开发",
+                image: "https://placehold.co/800x400/3b82f6/ffffff?text=React+18",
+                tags: ["React", "JavaScript", "前端"]
+            },
+            {
+                id: 2,
+                title: "设计系统构建指南",
+                excerpt: "从零开始构建企业级设计系统，涵盖设计原则、组件库、文档化和团队协作的最佳实践。",
+                content: "设计系统是现代产品开发的核心。它不仅包含UI组件库，还涉及设计原则、品牌指南、交互模式和开发工具。一个完善的设计系统可以显著提高开发效率，确保产品体验的一致性。",
+                author: "李娜",
+                date: "2024-01-12",
+                readTime: "12 min read",
+                category: "UI/UX",
+                image: "https://placehold.co/800x400/10b981/ffffff?text=Design+System",
+                tags: ["设计系统", "UI", "UX"]
+            },
+            {
+                id: 3,
+                title: "Node.js性能优化实战",
+                excerpt: "通过实际案例分享Node.js应用性能瓶颈的诊断方法和优化策略，包括内存管理、异步处理和数据库查询优化。",
+                content: "Node.js应用的性能优化需要从多个维度考虑。首先应该使用性能分析工具识别瓶颈，然后针对性地优化代码。常见的优化点包括减少内存泄漏、优化异步操作、改进数据库查询和缓存策略。",
+                author: "王强",
+                date: "2024-01-10",
+                readTime: "15 min read",
+                category: "后端开发",
+                image: "https://placehold.co/800x400/f59e0b/ffffff?text=Node.js",
+                tags: ["Node.js", "性能优化", "后端"]
+            },
+            {
+                id: 4,
+                title: "Web3入门：区块链开发基础",
+                excerpt: "介绍区块链技术基本概念，手把手教你搭建第一个智能合约，并部署到测试网络。",
+                content: "Web3正在重塑互联网的未来。区块链技术提供了去中心化的数据存储和价值传输机制。通过智能合约，我们可以创建无需信任的自动化协议。本教程将带你从零开始学习区块链开发。",
+                author: "陈明",
+                date: "2024-01-08",
+                readTime: "20 min read",
+                category: "区块链",
+                image: "https://placehold.co/800x400/8b5cf6/ffffff?text=Web3",
+                tags: ["区块链", "Web3", "智能合约"]
+            },
+            {
+                id: 5,
+                title: "AI辅助编程的未来",
+                excerpt: "探讨AI编程助手如何改变开发工作流，分析当前技术局限和未来发展趋势。",
+                content: "AI编程助手正在迅速改变软件开发的方式。从代码补全到错误检测，从文档生成到架构设计，AI正在成为开发者的强大助手。然而，我们也需要认识到当前技术的局限性，避免过度依赖。",
+                author: "赵静",
+                date: "2024-01-05",
+                readTime: "10 min read",
+                category: "人工智能",
+                image: "https://placehold.co/800x400/ef4444/ffffff?text=AI+Programming",
+                tags: ["AI", "编程", "未来"]
+            },
+            {
+                id: 6,
+                title: "响应式设计最佳实践",
+                excerpt: "分享现代响应式设计的实用技巧，确保你的网站在各种设备上都能提供出色的用户体验。",
+                content: "响应式设计不仅仅是使用媒体查询。它需要考虑内容优先级、触摸友好性、性能优化和可访问性。通过合理的断点设置、灵活的布局和适当的图片处理，可以创建真正适应各种设备的网站。",
+                author: "刘洋",
+                date: "2024-01-03",
+                readTime: "7 min read",
+                category: "前端开发",
+                image: "https://placehold.co/800x400/06b6d4/ffffff?text=Responsive+Design",
+                tags: ["响应式", "CSS", "移动端"]
+            }
+        ];
+
+        // State
+        let selectedCategory = "所有";
+        let searchTerm = "";
+        let selectedPost = null;
+
+        // DOM Elements
+        const header = document.getElementById('header');
+        const menuButton = document.getElementById('menuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const searchInput = document.getElementById('searchInput');
+        const categoryButtons = document.getElementById('categoryButtons');
+        const blogPostsContainer = document.getElementById('blogPosts');
+        const noResults = document.getElementById('noResults');
+        const postModal = document.getElementById('postModal');
+        const closeModal = document.getElementById('closeModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalCategory = document.getElementById('modalCategory');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalAuthor = document.getElementById('modalAuthor');
+        const modalDate = document.getElementById('modalDate');
+        const modalReadTime = document.getElementById('modalReadTime');
+        const modalContent = document.getElementById('modalContent');
+        const modalTags = document.getElementById('modalTags');
+        const modalAuthorImg = document.getElementById('modalAuthorImg');
+        const modalAuthorName = document.getElementById('modalAuthorName');
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Lucide icons
+            lucide.createIcons();
+            
+            // Render initial posts
+            renderBlogPosts();
+            
+            // Set up event listeners
+            setupEventListeners();
+        });
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Mobile menu toggle
+            menuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Close mobile menu when clicking on links
+            document.querySelectorAll('#mobileMenu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // Search input
+            searchInput.addEventListener('input', (e) => {
+                searchTerm = e.target.value;
+                renderBlogPosts();
+            });
+
+            // Category buttons
+            categoryButtons.addEventListener('click', (e) => {
+                if (e.target.tagName === 'BUTTON') {
+                    document.querySelectorAll('#categoryButtons button').forEach(btn => {
+                        btn.classList.remove('bg-blue-600', 'text-white', 'shadow-lg');
+                        btn.classList.add('bg-gray-100', 'text-gray-700');
+                    });
+                    e.target.classList.remove('bg-gray-100', 'text-gray-700');
+                    e.target.classList.add('bg-blue-600', 'text-white', 'shadow-lg');
+                    selectedCategory = e.target.dataset.category;
+                    renderBlogPosts();
+                }
+            });
+
+            // Close modal
+            closeModal.addEventListener('click', () => {
+                postModal.classList.add('hidden');
+            });
+
+            // Close modal when clicking outside
+            postModal.addEventListener('click', (e) => {
+                if (e.target === postModal) {
+                    postModal.classList.add('hidden');
+                }
+            });
+
+            // Scroll event for header
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.remove('bg-transparent');
+                    header.classList.add('bg-white/95', 'backdrop-blur-md', 'shadow-lg');
+                } else {
+                    header.classList.add('bg-transparent');
+                    header.classList.remove('bg-white/95', 'backdrop-blur-md', 'shadow-lg');
+                }
+            });
+        }
+
+        // Render blog posts
+        function renderBlogPosts() {
+            const filteredPosts = blogPosts.filter(post => {
+                const matchesCategory = selectedCategory === "所有" || post.category === selectedCategory;
+                const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                    post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                    post.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
+                return matchesCategory && matchesSearch;
+            });
+
+            blogPostsContainer.innerHTML = '';
+            
+            if (filteredPosts.length === 0) {
+                noResults.classList.remove('hidden');
+                return;
+            }
+            
+            noResults.classList.add('hidden');
+            
+            filteredPosts.forEach(post => {
+                const postElement = document.createElement('article');
+                postElement.className = 'bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group cursor-pointer';
+                postElement.innerHTML = `
+                    <div class="relative overflow-hidden">
+                        <img src="${post.image}" alt="${post.title}" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-white/90 backdrop-blur-sm text-sm font-medium px-3 py-1 rounded-full text-gray-700">
+                                ${post.category}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
+                            ${post.title}
+                        </h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">
+                            ${post.excerpt}
+                        </p>
+                        <div class="flex items-center justify-between text-sm text-gray-500">
+                            <div class="flex items-center space-x-4">
+                                <span class="flex items-center space-x-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                    <span>${post.author}</span>
+                                </span>
+                                <span class="flex items-center space-x-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/></svg>
+                                    <span>${post.date}</span>
+                                </span>
+                            </div>
+                            <span class="flex items-center space-x-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                <span>${post.readTime}</span>
+                            </span>
+                        </div>
+                    </div>
+                `;
+                
+                postElement.addEventListener('click', () => openPostModal(post));
+                blogPostsContainer.appendChild(postElement);
+            });
+            
+            // Re-initialize icons
+            lucide.createIcons();
+        }
+
+        // Open post modal
+        function openPostModal(post) {
+            selectedPost = post;
+            
+            modalImage.src = post.image;
+            modalImage.alt = post.title;
+            modalCategory.textContent = post.category;
+            modalTitle.textContent = post.title;
+            modalAuthor.textContent = post.author;
+            modalDate.textContent = post.date;
+            modalReadTime.textContent = post.readTime;
+            modalContent.textContent = post.content;
+            modalAuthorName.textContent = post.author;
+            modalAuthorImg.src = `https://placehold.co/40x40/ddd/333?text=${post.author.charAt(0)}`;
+            
+            // Clear and add tags
+            modalTags.innerHTML = '';
+            post.tags.forEach(tag => {
+                const tagSpan = document.createElement('span');
+                tagSpan.className = 'inline-block bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full mr-2 mb-2';
+                tagSpan.textContent = tag;
+                modalTags.appendChild(tagSpan);
+            });
+            
+            postModal.classList.remove('hidden');
+        }
+
+        // Initial render
+        renderBlogPosts();
+    </script>
+</body>
+</html>
